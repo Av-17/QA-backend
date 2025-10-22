@@ -248,7 +248,7 @@ def generate_answer(state: AgentState):# this node will generate answer to the r
             history = fetch_messages(limit=3)
             documents = state["documents"]
             question = state["question"]
-            question_content = question.content
+            question_content = question
             context_text = "\n\n".join([doc.page_content for doc in documents])
             # print(f"Context passed to LLM: \n{context_text}\n")
             response = rag_chain.invoke(
