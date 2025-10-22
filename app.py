@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
+from fastapi.concurrency import run_in_threadpool
 import os
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage
@@ -13,6 +14,7 @@ from sqlite_db import init, insert_message, fetch_messages, clear_messages, inse
 api = FastAPI(title="RAG Chatbot API")
 origins = [  # React dev server
     "https://qa-frontend-lb0wk55do-avdhesh-prajapatis-projects.vercel.app",
+    "http://localhost:3000",
 ]
 
 api.add_middleware(
@@ -55,24 +57,19 @@ async def upload_pdfs(files: List[UploadFile] = File(...)):
 
 @api.post("/ask")
 async def ask_question(question: str = Form(...)):
-    """
-    Ask a question — RAG workflow uses the uploaded documents.
-    """
-    # global global_retriever
     if not vectorDB.global_retriever:
         return {"error": "Please upload PDFs first before asking questions."}
 
     try:
-        retriever_exists_flag = vectorDB.global_retriever is not None
         insert_message("User", question)
         print(f"❓ Question received: {question}")
+
         input_data = {"question": question, "docs": global_documents}
-        response = graph.invoke(input=input_data, config={"configurable": {"thread_id": 1}})
+
+        # Run blocking graph.invoke in threadpool
+        response = await run_in_threadpool(lambda: graph.invoke(input=input_data, config={"configurable": {"thread_id": 1}}))
 
         answer = response["ai_response"].content
-        # print("saving to db")
-        
-        # print("Answer : ",answer)
         return {"question": question, "answer": answer}
     except Exception as e:
         print(f"❌ Error during question answering: {e}")
