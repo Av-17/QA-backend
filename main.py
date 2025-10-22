@@ -176,8 +176,8 @@ def retrieve(state: AgentState):
         Return only one of: summary, ending, or chunk.
         Question: {}
         """.format(question)
-            groqllm = ChatGroq(model="llama-3.1-8b-instant") 
-            classification = groqllm.invoke(classifier_prompt).content.strip().lower()
+            # groqllm = ChatGroq(model="llama-3.1-8b-instant") 
+            classification = llm.invoke(classifier_prompt).content.strip().lower()
             print(f"Retrieve Function: Query Classification: {classification}")
             if classification == "summary":
                 print(f"Retrieve Function: Entering summary branch.")
