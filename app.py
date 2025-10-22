@@ -10,7 +10,7 @@ import vectorDB
 from load import load_and_chunk_uploaded_pdfs  # use the upload-based version we discussed earlier
 from main import graph  # import your workflow graph defined above
 from sqlite_db import init, insert_message, fetch_messages, clear_messages, insert_document, clear_documents
-
+from fastapi import Request
 api = FastAPI(title="RAG Chatbot API")
 origins = [  # React dev server
     "https://qa-frontend-iuiag85dt-avdhesh-prajapatis-projects.vercel.app/",
@@ -78,7 +78,7 @@ async def ask_question(question: str = Form(...)):
 
 
 @api.route("/", methods=["GET", "HEAD"])
-def home():
+def home(_request: Request = None):
     return {"message": "Welcome to the RAG Chatbot API!"}
 
 # @api.on_event("shutdown")
