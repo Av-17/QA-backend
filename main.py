@@ -21,7 +21,7 @@ load_dotenv()
 # pdf_path = "story.pdf"
 # docs = load_and_chunk_local_pdf(pdf_path)
 # retriever = vectorstore(docs)
-llm = ChatGroq(model="llama-3.1-8b-instant", api_key=os.getenv("GROQ_API_KEY"))
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 # llm = ChatGroq(model="llama-3.1-8b-instant", api_key=os.getenv("GROQ_API_KEY"))
 template = """
 You are an intelligent and reliable QA assistant designed to answer questions using all available information from the provided document context and chat history.
