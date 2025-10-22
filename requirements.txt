@@ -1,0 +1,14 @@
+langchain
+langgraph
+langchain-google-genai
+langchain_core
+faiss-cpu
+langchain_community
+pymupdf
+dotenv
+langchain-groq
+sentence-transformers
+langchain-huggingface
+fastapi
+uvicorn
+python-multipart
