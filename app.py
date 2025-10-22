@@ -14,13 +14,12 @@ from fastapi import Request
 api = FastAPI(title="RAG Chatbot API")
 origins = [  # React dev server
     "https://qa-frontend-iuiag85dt-avdhesh-prajapatis-projects.vercel.app",
-    "http://localhost:3000",
 ]
 
 
 api.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
