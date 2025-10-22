@@ -68,7 +68,7 @@ async def ask_question(question: str = Form(...)):
         input_data = {"question": question, "docs": global_documents}
 
         # Run blocking graph.invoke in threadpool
-        response = await run_in_threadpool(lambda: graph.invoke(input=input_data, config={"configurable": {"thread_id": 1}}))
+        response = graph.invoke(input=input_data, config={"configurable": {"thread_id": 1}})
 
         answer = response["ai_response"].content
         return {"question": question, "answer": answer}
