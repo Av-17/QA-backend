@@ -7,7 +7,6 @@ langchain_community
 pymupdf
 dotenv
 langchain-groq
-sentence-transformers
 langchain-huggingface
 fastapi
 uvicorn
