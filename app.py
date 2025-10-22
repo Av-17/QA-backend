@@ -12,14 +12,13 @@ from main import graph  # import your workflow graph defined above
 from sqlite_db import init, insert_message, fetch_messages, clear_messages, insert_document, clear_documents
 from fastapi import Request
 api = FastAPI(title="RAG Chatbot API")
-origins = [  # React dev server
-    "https://qa-frontend-iuiag85dt-avdhesh-prajapatis-projects.vercel.app",
-]
+origins = "https://qa-frontend-iuiag85dt-avdhesh-prajapatis-projects.vercel.app/"
+
 
 
 api.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
