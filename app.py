@@ -13,9 +13,10 @@ from sqlite_db import init, insert_message, fetch_messages, clear_messages, inse
 
 api = FastAPI(title="RAG Chatbot API")
 origins = [  # React dev server
-    "https://qa-frontend-lb0wk55do-avdhesh-prajapatis-projects.vercel.app",
+    "https://qa-frontend-iuiag85dt-avdhesh-prajapatis-projects.vercel.app/",
     "http://localhost:3000",
 ]
+
 
 api.add_middleware(
     CORSMiddleware,
