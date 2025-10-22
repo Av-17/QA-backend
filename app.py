@@ -77,8 +77,8 @@ async def ask_question(question: str = Form(...)):
         return {"error": str(e)}
 
 
-@api.route("/", methods=["GET", "HEAD"])
-def home(_request: Request = None):
+@api.get("/")
+def home():
     return {"message": "Welcome to the RAG Chatbot API!"}
 
 # @api.on_event("shutdown")
