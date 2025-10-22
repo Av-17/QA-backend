@@ -11,8 +11,8 @@ from main import graph  # import your workflow graph defined above
 from sqlite_db import init, insert_message, fetch_messages, clear_messages, insert_document, clear_documents
 
 api = FastAPI(title="RAG Chatbot API")
-origins = [
-    "http://localhost:3000",  # React dev server
+origins = [  # React dev server
+    "https://qa-frontend-lb0wk55do-avdhesh-prajapatis-projects.vercel.app",
 ]
 
 api.add_middleware(
