@@ -284,7 +284,7 @@ def off_topic_response(state: AgentState):# if the question is off topic then th
 
 #             generation = response.content.strip()
 #             insert_message("AI", generation)
-            state["ai_response"] = AIMessage(content="I'm sorry, I don't know.")
+            state["ai_response"] = AIMessage(content="I'm sorry, I don't know. I only have information related to the uploaded documents. I not able to answer off-topic questions.")
             # print(f"generate_answer: Generated response: {generation}")
             return state
 
