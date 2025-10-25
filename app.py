@@ -12,7 +12,7 @@ from main import graph  # import your workflow graph defined above
 from sqlite_db import init, insert_message, fetch_messages, clear_messages, insert_document, clear_documents
 from fastapi import Request
 api = FastAPI(title="RAG Chatbot API")
-origins = "https://qa-frontend-umber.vercel.app/"
+origins = ["https://qa-frontend-umber.vercel.app"]
 
 
 
